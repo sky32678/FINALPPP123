@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">FINALPPP</string>
+    <string name="toggle">START</string>
+    <string name="start">SEARCH</string>
+    <string name="off">OFF</string>
+    <string name="light">Light</string>
+    <string name="red">Red</string>
+    <string name="blue">Blue</string>
+    <string name="green">Green</string>
+
+</resources>
