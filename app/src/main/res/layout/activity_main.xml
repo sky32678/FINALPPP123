@@ -26,7 +26,7 @@
         android:text="@string/start" />
 
     <Button
-        android:id="@+id/gallay"
+        android:id="@+id/translate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
@@ -35,11 +35,11 @@
         android:layout_marginEnd="0dp"
         android:layout_marginRight="0dp"
         android:layout_marginBottom="0dp"
-        android:text="Choose a photo" />
+        android:text="@string/translate" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="381dp"
+        android:layout_width="180dp"
         android:layout_height="79dp"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
@@ -63,7 +63,7 @@
         android:id="@+id/inputText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/gallay"
+        android:layout_alignTop="@+id/translate"
         android:layout_alignParentStart="true"
         android:layout_marginStart="0dp"
         android:layout_marginTop="-22dp"
@@ -78,6 +78,21 @@
         android:layout_alignStart="@+id/textView"
         android:layout_alignTop="@+id/takepicture"
         android:text="Find Your Word" />
+
+    <TextView
+        android:id="@+id/Result"
+        android:layout_width="180dp"
+        android:layout_height="79dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="7dp"
+        android:layout_marginRight="7dp"
+        android:layout_marginBottom="101dp"
+        android:text="Translate"
+        android:textColor="@android:color/holo_green_dark"
+        android:textSize="25sp" />
+
 
 
 </RelativeLayout>

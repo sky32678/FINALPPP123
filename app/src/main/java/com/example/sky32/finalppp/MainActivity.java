@@ -1,55 +1,31 @@
 package com.example.sky32.finalppp;
 
 import android.Manifest;
-import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageManager;
 
-import android.content.res.Configuration;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.hardware.Camera;
-import android.net.Uri;
-import android.os.Build;
-import android.os.CountDownTimer;
 import android.os.Environment;
-import android.os.SharedMemory;
-import android.provider.Settings;
-import android.renderscript.ScriptC;
-import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.ImageView;
-import android.widget.SeekBar;
 import android.widget.TextView;
-import android.widget.Toast;
-import android.widget.ToggleButton;
 
-import com.example.sky32.finalppp.R;
-import com.example.sky32.finalppp.ShowCamera;
 import com.google.android.gms.vision.CameraSource;
 import com.google.android.gms.vision.Detector;
 import com.google.android.gms.vision.text.TextBlock;
 import com.google.android.gms.vision.text.TextRecognizer;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.Timer;
-import java.util.TimerTask;
-import java.util.concurrent.TimeUnit;
+
+import static com.example.sky32.finalppp.Translator.*;
 
 public class MainActivity extends AppCompatActivity {
     Camera camera;
@@ -57,14 +33,18 @@ public class MainActivity extends AppCompatActivity {
     ShowCamera showCamera;
    // FrameLayout frameLayout;
     SurfaceView surfaceView;
-    Button takepic, stop_timer, choosePic;
-    TextView text1, textview, textUri;
+    Button takepic, stop_timer, translator;
+    public TextView text1,textUri;
+    public static TextView textview,transOutput;
     final int RequestCameraPermission = 1001;
 
     private static final String FORMAT = "%02d:%02d:%02d";
+
     /////input section
     String input;
     EditText editTextinput;
+
+
 
     /////////////////////////////////Picture stuffs
 
@@ -117,10 +97,16 @@ public class MainActivity extends AppCompatActivity {
 ////////////////////////////////////////////////////////////////////////////////////////////////
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        ///
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ///
         takepic = (Button) findViewById(R.id.takepicture);
+        transOutput = findViewById(R.id.Result);
+        translator = findViewById(R.id.translate);
+        ///Create onClick Listener
         takepic.setOnClickListener(onClickListener_takepic);
+        translator.setOnClickListener(onClickListener_translator);
 
         editTextinput = findViewById(R.id.inputText) ;
 
@@ -175,6 +161,7 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             public void receiveDetections(Detector.Detections<TextBlock> detections) {
+                final String show = "";
                 final SparseArray<TextBlock> items = detections.getDetectedItems();
                 if (items.size() != 0 && !isWorking) {
                     textview.post(new Runnable() {
@@ -195,8 +182,11 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                             }
-                            ////show on the screen
+
+
+
                             textview.setText(stringBuilder.toString());
+
                         }
                     });
                 }
@@ -208,14 +198,9 @@ public class MainActivity extends AppCompatActivity {
 
         ////set ID
         //takepic = findViewById(R.id.tackpic);
-
-
-        choosePic = findViewById(R.id.gallay);
-
-
     }
 
-    /////button
+    /////button_takePic
     View.OnClickListener onClickListener_takepic = new View.OnClickListener()
     {
 
@@ -228,10 +213,24 @@ public class MainActivity extends AppCompatActivity {
             //input
         input = editTextinput.getText().toString();
 
-
         }
-
     };
+
+    View.OnClickListener onClickListener_translator;
+
+    {
+        onClickListener_translator = new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v)
+
+            {
+                new Translator().execute();
+            }
+        };
+    }
+
 
 }
 
