@@ -41,8 +41,8 @@ public class MainActivity extends AppCompatActivity {
     private static final String FORMAT = "%02d:%02d:%02d";
 
     /////input section
-    String input;
-    EditText editTextinput;
+    public static String input;
+    public static EditText editTextinput;
 
 
 
@@ -182,7 +182,6 @@ public class MainActivity extends AppCompatActivity {
                                 }
 
                             }
-
 
 
                             textview.setText(stringBuilder.toString());

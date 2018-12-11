@@ -8,6 +8,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLEncoder;
+import static com.example.sky32.finalppp.MainActivity.input;
 
 import static com.example.sky32.finalppp.MainActivity.textview;
 import static com.example.sky32.finalppp.MainActivity.transOutput;
@@ -44,7 +45,7 @@ public class Translator extends AsyncTask{
     @Override
     protected Object doInBackground(Object[] objects) {
         try {
-            result = translate("en","ko",textview.toString());
+            result = translate("en","ko", input);
         } catch (IOException e) {
             e.printStackTrace();
         }
